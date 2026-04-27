@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, PackageCheck, AlertTriangle, ArrowRight, RefreshCw } from 'lucide-react';
+import { Truck, PackageCheck, ArrowRight, RefreshCw } from 'lucide-react';
 import { useRealTimeData } from '../hooks/useRealTimeData';
 import { db } from '../firebase';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
@@ -8,8 +8,15 @@ const QuickRestock = () => {
   const { products } = useRealTimeData();
 
   const handleRestock = async (product: any) => {
-    const restockAmount = product.max_stock - product.current_stock;
-    if (restockAmount <= 0) return;
+    if (!product.max_stock || product.max_stock <= 0) {
+      alert(`Cannot restock "${product.name}": Max stock is not set. Please update the product's max stock value first.`);
+      return;
+    }
+
+    if (product.current_stock >= product.max_stock) {
+      alert(`"${product.name}" is already at full capacity (${product.max_stock} units).`);
+      return;
+    }
 
     try {
       const productRef = doc(db, 'products', product.id);
@@ -17,10 +24,10 @@ const QuickRestock = () => {
         current_stock: product.max_stock,
         updated_at: serverTimestamp()
       });
-      alert(`Restocked ${product.name} to full capacity!`);
+      alert(`✅ Restocked "${product.name}" to full capacity (${product.max_stock} units)!`);
     } catch (err) {
       console.error(err);
-      alert('Restock failed');
+      alert('❌ Restock failed. Please try again.');
     }
   };
 
@@ -67,11 +74,18 @@ const QuickRestock = () => {
 
               <button
                 onClick={() => handleRestock(product)}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[50px] font-black text-sm shadow-lg shadow-indigo-100 transition-all flex items-center justify-center gap-3 group-hover:scale-105 active:scale-95"
+                disabled={!product.max_stock || product.max_stock <= 0}
+                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-[50px] font-black text-sm shadow-lg shadow-indigo-100 transition-all flex items-center justify-center gap-3 group-hover:scale-105 active:scale-95"
               >
                 <PackageCheck className="w-5 h-5" />
-                Confirm Full Restock
+                {!product.max_stock || product.max_stock <= 0 ? 'Max Stock Not Set' : 'Confirm Full Restock'}
               </button>
+
+              {(!product.max_stock || product.max_stock <= 0) && (
+                <p className="text-xs text-rose-400 font-semibold text-center mt-3">
+                  ⚠️ Set max_stock in Firestore to enable restock
+                </p>
+              )}
             </div>
           ))
         ) : (
@@ -111,8 +125,8 @@ const QuickRestock = () => {
                       </td>
                       <td className="px-8 py-5">
                         <div className="w-32 h-2 bg-slate-100 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-emerald-500" 
+                          <div
+                            className="h-full bg-emerald-500"
                             style={{ width: `${(product.current_stock / product.max_stock) * 100}%` }}
                           />
                         </div>
@@ -121,7 +135,7 @@ const QuickRestock = () => {
                         {product.max_stock - product.current_stock} units
                       </td>
                       <td className="px-8 py-5 text-right">
-                        <button 
+                        <button
                           onClick={() => handleRestock(product)}
                           className="text-indigo-600 font-bold text-sm hover:underline"
                         >
