@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   MessageSquare,
   Send,
@@ -28,7 +28,7 @@ const Chatbot = () => {
     {
       role: "ai",
       content:
-        "👋 Hi! I'm ChainAI Assistant.\nAsk me about stock, revenue, sales or reports."
+        "👋 Hi! I'm ChainAI Assistant.\nAsk me about stock, sales, revenue or reports."
     }
   ]);
 
@@ -208,9 +208,8 @@ Best category: Accessories.`;
           content: getReply(msg)
         }
       ]);
-
       setLoading(false);
-    }, 600);
+    }, 800);
   };
 
   const resetChat = () => {
@@ -218,7 +217,7 @@ Best category: Accessories.`;
       {
         role: "ai",
         content:
-          "👋 Hi! I'm ChainAI Assistant.\nAsk me about stock, revenue, sales or reports."
+          "👋 Hi! I'm ChainAI Assistant.\nAsk me about stock, sales, revenue or reports."
       }
     ]);
   };
@@ -326,9 +325,28 @@ Best category: Accessories.`;
               </div>
             ))}
 
+            {/* Typing Animation */}
             {loading && (
-              <div className="bg-white border border-slate-100 shadow-sm px-4 py-3 rounded-3xl w-fit">
-                Typing...
+              <div className="flex justify-start">
+                <div className="bg-white border border-slate-100 shadow-sm px-4 py-3 rounded-3xl rounded-bl-md">
+                  <div className="flex items-center gap-1">
+                    <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></span>
+                    <span
+                      className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"
+                      style={{
+                        animationDelay:
+                          "0.15s"
+                      }}
+                    ></span>
+                    <span
+                      className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"
+                      style={{
+                        animationDelay:
+                          "0.3s"
+                      }}
+                    ></span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
