@@ -35,8 +35,10 @@ const Billing = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastBill, setLastBill] = useState<any>(null);
 
-  const categories = ['All', ...Array.from(new Set(products.map(p => p.category))).sort()];
-  const filteredProducts = products.filter(p => {
+  // ✅ Dynamic categories derived from actual products data
+  const categories = ['All', ...Array.from(new Set(products.map((p: Product) => p.category))).sort()];
+
+  const filteredProducts = products.filter((p: Product) => {
     const matchesSearch =
       p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       p.sku.toLowerCase().includes(searchTerm.toLowerCase());
@@ -83,7 +85,7 @@ const Billing = () => {
       prev
         .map(item => {
           if (item.product_id !== id) return item;
-          const product = products.find(p => p.id === id);
+          const product = products.find((p: Product) => p.id === id);
           const newQty = item.quantity + delta;
           if (newQty <= 0) return null;
           if (product && newQty > product.current_stock) return item;
@@ -198,7 +200,7 @@ const Billing = () => {
             </span>
           </div>
 
-          {/* Category pills */}
+          {/* ✅ Dynamic category pills */}
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
             {categories.map(cat => (
               <button
@@ -231,7 +233,7 @@ const Billing = () => {
         {/* Product Grid */}
         <div className="flex-1 overflow-y-auto min-h-0">
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 pb-4 pr-1">
-            {filteredProducts.map(product => {
+            {filteredProducts.map((product: Product) => {
               const outOfStock = product.current_stock <= 0;
               const lowStock = product.current_stock <= product.reorder_point;
               return (
@@ -244,14 +246,12 @@ const Billing = () => {
                       : 'cursor-pointer hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-100 active:scale-[0.97]'
                     }`}
                 >
-                  {/* Image — fixed 1:1 aspect ratio, covers container */}
                   <div className="relative w-full aspect-square bg-slate-100 overflow-hidden">
                     <ProductImage
                       src={product.image_url}
                       alt={product.name}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Stock badge */}
                     <span className={`absolute top-2 right-2 text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-tight backdrop-blur-sm ${
                       outOfStock
                         ? 'bg-slate-900/60 text-white'
@@ -263,7 +263,6 @@ const Billing = () => {
                     </span>
                   </div>
 
-                  {/* Info */}
                   <div className="p-3 space-y-1">
                     <p className="text-[9px] font-black text-indigo-500 uppercase tracking-widest truncate">
                       {product.category}
@@ -273,7 +272,7 @@ const Billing = () => {
                     </h3>
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-sm font-black text-slate-900">
-                        ₹{product.selling_price.toLocaleString()}
+                        ₹{product.selling_price.toLocaleString('en-IN')}
                       </span>
                       <div className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${
                         outOfStock
@@ -329,7 +328,6 @@ const Billing = () => {
                 key={item.product_id}
                 className="flex items-center gap-3 bg-slate-50/60 hover:bg-white rounded-2xl border border-slate-100 hover:shadow-md hover:shadow-indigo-500/5 p-3 transition-all"
               >
-                {/* Thumbnail — fixed square */}
                 <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-slate-100 border border-white shadow-sm">
                   <ProductImage
                     src={item.image_url}
@@ -338,7 +336,6 @@ const Billing = () => {
                   />
                 </div>
 
-                {/* Name + category */}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-black text-slate-800 truncate leading-tight">
                     {item.product_name}
@@ -346,18 +343,16 @@ const Billing = () => {
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
                     {item.category}
                   </p>
-                  {/* Price row */}
                   <div className="flex items-center justify-between mt-1.5">
                     <span className="text-[10px] font-bold text-slate-500">
-                      ₹{item.unit_price.toLocaleString()} × {item.quantity}
+                      ₹{item.unit_price.toLocaleString('en-IN')} × {item.quantity}
                     </span>
                     <span className="text-xs font-black text-indigo-600">
-                      ₹{item.total_price.toLocaleString()}
+                      ₹{item.total_price.toLocaleString('en-IN')}
                     </span>
                   </div>
                 </div>
 
-                {/* Qty controls */}
                 <div className="flex flex-col items-center gap-1 flex-shrink-0">
                   <button
                     onClick={() => updateQuantity(item.product_id, 1)}
@@ -382,21 +377,20 @@ const Billing = () => {
 
         {/* Summary + Actions */}
         <div className="p-5 bg-slate-50/80 border-t border-slate-100 space-y-4 flex-shrink-0">
-          {/* Totals */}
           <div className="space-y-2">
             <div className="flex justify-between text-[11px] font-bold text-slate-400">
               <span>Subtotal</span>
-              <span className="text-slate-700">₹{subtotal.toLocaleString()}</span>
+              <span className="text-slate-700">₹{subtotal.toLocaleString('en-IN')}</span>
             </div>
             <div className="flex justify-between text-[11px] font-bold text-slate-400">
               <span>GST (18%)</span>
-              <span className="text-slate-700">₹{taxAmount.toLocaleString()}</span>
+              <span className="text-slate-700">₹{taxAmount.toLocaleString('en-IN')}</span>
             </div>
             <div className="flex justify-between items-center bg-white rounded-2xl px-5 py-4 shadow-lg shadow-indigo-500/5 border border-indigo-50 mt-1">
               <div>
                 <p className="text-[9px] font-black text-indigo-400 uppercase tracking-widest">Total Payable</p>
                 <p className="text-2xl font-black text-slate-900 tracking-tight">
-                  ₹{grandTotal.toLocaleString()}
+                  ₹{grandTotal.toLocaleString('en-IN')}
                 </p>
               </div>
               <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center">
@@ -405,7 +399,6 @@ const Billing = () => {
             </div>
           </div>
 
-          {/* Customer input */}
           <input
             type="text"
             placeholder="Customer name (optional)..."
@@ -414,7 +407,6 @@ const Billing = () => {
             className="w-full px-4 py-3 bg-white border border-slate-100 focus:ring-4 focus:ring-indigo-50 focus:border-indigo-200 rounded-2xl outline-none font-medium text-sm shadow-sm transition-all"
           />
 
-          {/* Payment method */}
           <div className="grid grid-cols-3 gap-2">
             {[
               { id: 'Card', icon: CreditCard },
@@ -436,7 +428,6 @@ const Billing = () => {
             ))}
           </div>
 
-          {/* Generate Bill */}
           <button
             onClick={handleGenerateBill}
             disabled={cart.length === 0 || isGenerating}
@@ -456,72 +447,211 @@ const Billing = () => {
           </button>
         </div>
 
-        {/* ── Hidden Print Receipt ── */}
+        {/* ── Print Receipt (hidden on screen, shown on print) ── */}
         {lastBill && (
-          <div className="hidden print:block bg-white text-black p-10 font-sans">
-            <div className="flex flex-col items-center mb-10">
-              <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mb-3">
-                <Package className="text-white w-8 h-8" />
+          <div className="hidden print:block">
+            <style>{`
+              @page {
+                size: A5;
+                margin: 0;
+              }
+              @media print {
+                body * { visibility: hidden; }
+                .print-receipt, .print-receipt * { visibility: visible; }
+                .print-receipt { position: fixed; top: 0; left: 0; width: 100%; }
+              }
+            `}</style>
+
+            <div
+              className="print-receipt"
+              style={{
+                fontFamily: "'Segoe UI', Arial, sans-serif",
+                color: '#111',
+                maxWidth: '480px',
+                margin: '0 auto',
+                padding: '48px 44px',
+                background: '#fff',
+              }}
+            >
+              {/* ── Logo + Brand ── */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '28px' }}>
+                <div style={{
+                  width: '48px', height: '48px',
+                  background: '#4f46e5',
+                  borderRadius: '12px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <Package style={{ color: 'white', width: '24px', height: '24px' }} />
+                </div>
+                <div>
+                  <p style={{ fontSize: '18px', fontWeight: '800', margin: 0, letterSpacing: '-0.3px', color: '#111' }}>
+                    SupplyChain AI
+                  </p>
+                  <p style={{ fontSize: '10px', color: '#888', margin: 0, letterSpacing: '2px', textTransform: 'uppercase' }}>
+                    Official Tax Invoice
+                  </p>
+                </div>
               </div>
-              <h1 className="text-3xl font-black text-slate-900 tracking-tighter">CHAIN AI</h1>
-              <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-[9px]">Official Tax Invoice</p>
-            </div>
-            <div className="flex justify-between mb-10 border-y border-slate-100 py-6">
-              <div>
-                <p className="text-slate-400 uppercase text-[9px] font-black mb-1 tracking-widest">Invoice</p>
-                <p className="font-black text-lg text-slate-900">#{lastBill.bill_number}</p>
-                <p className="text-slate-500 font-bold mt-1 text-xs">{new Date().toLocaleString()}</p>
+
+              {/* ── Top divider ── */}
+              <div style={{ height: '2px', background: '#111', marginBottom: '24px' }} />
+
+              {/* ── Invoice Meta Row ── */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px' }}>
+                <div>
+                  <p style={{ fontSize: '9px', color: '#aaa', textTransform: 'uppercase', letterSpacing: '2px', margin: '0 0 5px' }}>Invoice No.</p>
+                  <p style={{ fontSize: '16px', fontWeight: '800', margin: '0 0 6px', color: '#111' }}>
+                    #{lastBill.bill_number}
+                  </p>
+                  <p style={{ fontSize: '11px', color: '#666', margin: '0 0 2px' }}>
+                    {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}
+                  </p>
+                  <p style={{ fontSize: '11px', color: '#999', margin: 0 }}>
+                    {new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}
+                  </p>
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                  <p style={{ fontSize: '9px', color: '#aaa', textTransform: 'uppercase', letterSpacing: '2px', margin: '0 0 5px' }}>Billed To</p>
+                  <p style={{ fontSize: '16px', fontWeight: '800', margin: '0 0 8px', color: '#111' }}>
+                    {lastBill.customer_name}
+                  </p>
+                  <span style={{
+                    display: 'inline-block',
+                    background: '#eef2ff',
+                    color: '#4338ca',
+                    fontSize: '10px',
+                    fontWeight: '700',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    letterSpacing: '0.5px',
+                  }}>
+                    {lastBill.payment_method}
+                  </span>
+                </div>
               </div>
-              <div className="text-right">
-                <p className="text-slate-400 uppercase text-[9px] font-black mb-1 tracking-widest">Customer</p>
-                <p className="font-black text-lg text-slate-900">{lastBill.customer_name}</p>
-                <p className="text-slate-500 font-bold mt-1 text-xs">Via: {lastBill.payment_method}</p>
-              </div>
-            </div>
-            <table className="w-full mb-10">
-              <thead className="border-b-2 border-slate-900">
-                <tr>
-                  <th className="text-left py-3 font-black uppercase text-[9px] tracking-widest">Product</th>
-                  <th className="text-center py-3 font-black uppercase text-[9px] tracking-widest">Qty</th>
-                  <th className="text-right py-3 font-black uppercase text-[9px] tracking-widest">Amount</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {lastBill.items.map((item: any, i: number) => (
-                  <tr key={i}>
-                    <td className="py-4">
-                      <p className="font-black text-slate-800 text-sm">{item.product_name}</p>
-                      <p className="text-[9px] text-slate-400 font-bold">{item.category}</p>
-                    </td>
-                    <td className="py-4 text-center font-black text-slate-700 text-sm">×{item.quantity}</td>
-                    <td className="py-4 text-right font-black text-slate-900 text-sm">
-                      ₹{item.total_price.toLocaleString()}
-                    </td>
+
+              {/* ── Items Table ── */}
+              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '20px' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1.5px solid #111' }}>
+                    <th style={{ textAlign: 'left', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '1.5px', padding: '0 0 10px', fontWeight: '600' }}>
+                      Item
+                    </th>
+                    <th style={{ textAlign: 'center', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '1.5px', padding: '0 0 10px', fontWeight: '600', width: '40px' }}>
+                      Qty
+                    </th>
+                    <th style={{ textAlign: 'right', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '1.5px', padding: '0 0 10px', fontWeight: '600', width: '80px' }}>
+                      Rate
+                    </th>
+                    <th style={{ textAlign: 'right', fontSize: '9px', color: '#888', textTransform: 'uppercase', letterSpacing: '1.5px', padding: '0 0 10px', fontWeight: '600', width: '90px' }}>
+                      Amount
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="flex flex-col items-end gap-2 pt-6 border-t border-slate-200">
-              <div className="flex justify-between w-64 text-sm">
-                <span className="font-bold text-slate-400 uppercase tracking-widest text-xs">Subtotal</span>
-                <span className="font-black text-slate-700">₹{lastBill.subtotal.toLocaleString()}</span>
+                </thead>
+                <tbody>
+                  {lastBill.items.map((item: any, i: number) => (
+                    <tr key={i} style={{ borderBottom: '0.5px solid #eee' }}>
+                      <td style={{ padding: '12px 0' }}>
+                        <p style={{ fontSize: '13px', fontWeight: '700', margin: '0 0 3px', color: '#111' }}>
+                          {item.product_name}
+                        </p>
+                        <p style={{ fontSize: '9px', color: '#4f46e5', fontWeight: '700', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                          {item.category}
+                        </p>
+                      </td>
+                      <td style={{ padding: '12px 0', textAlign: 'center', fontSize: '13px', fontWeight: '600', color: '#555' }}>
+                        {item.quantity}
+                      </td>
+                      <td style={{ padding: '12px 0', textAlign: 'right', fontSize: '12px', color: '#777' }}>
+                        ₹{item.unit_price.toLocaleString('en-IN')}
+                      </td>
+                      <td style={{ padding: '12px 0', textAlign: 'right', fontSize: '13px', fontWeight: '700', color: '#111' }}>
+                        ₹{item.total_price.toLocaleString('en-IN')}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* ── Totals ── */}
+              <div style={{ marginBottom: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '6px' }}>
+                  <div style={{ width: '260px', display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#888' }}>Subtotal</span>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#333' }}>
+                      ₹{lastBill.subtotal.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '14px' }}>
+                  <div style={{ width: '260px', display: 'flex', justifyContent: 'space-between' }}>
+                    <span style={{ fontSize: '12px', color: '#888' }}>GST @ 18%</span>
+                    <span style={{ fontSize: '12px', fontWeight: '600', color: '#333' }}>
+                      ₹{lastBill.tax_amount.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Grand Total */}
+                <div style={{
+                  background: '#4f46e5',
+                  borderRadius: '14px',
+                  padding: '18px 22px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                  <div>
+                    <p style={{ fontSize: '9px', color: '#a5b4fc', textTransform: 'uppercase', letterSpacing: '2px', margin: '0 0 4px', fontWeight: '700' }}>
+                      Total Payable
+                    </p>
+                    <p style={{ fontSize: '10px', color: '#c7d2fe', margin: 0, fontWeight: '500' }}>
+                      Inclusive of all taxes
+                    </p>
+                  </div>
+                  <p style={{ fontSize: '26px', fontWeight: '900', color: '#fff', margin: 0, letterSpacing: '-0.5px' }}>
+                    ₹{lastBill.grand_total.toLocaleString('en-IN')}
+                  </p>
+                </div>
               </div>
-              <div className="flex justify-between w-64 text-sm">
-                <span className="font-bold text-slate-400 uppercase tracking-widest text-xs">GST (18%)</span>
-                <span className="font-black text-slate-700">₹{lastBill.tax_amount.toLocaleString()}</span>
+
+              {/* ── Items count summary ── */}
+              <div style={{
+                background: '#f8fafc',
+                borderRadius: '10px',
+                padding: '12px 16px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: '28px',
+                border: '0.5px solid #e2e8f0',
+              }}>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '600' }}>
+                  {lastBill.items.length} item{lastBill.items.length !== 1 ? 's' : ''} purchased
+                </span>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '600' }}>
+                  {lastBill.items.reduce((a: number, i: any) => a + i.quantity, 0)} units total
+                </span>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '600' }}>
+                  Saved ₹{Math.round(lastBill.items.reduce((a: number, i: any) => a + i.profit, 0) * 0).toLocaleString('en-IN')}
+                </span>
               </div>
-              <div className="flex justify-between w-64 mt-4 pt-4 border-t-2 border-slate-900">
-                <span className="font-black text-xl uppercase tracking-tighter">Grand Total</span>
-                <span className="font-black text-2xl text-indigo-600">₹{lastBill.grand_total.toLocaleString()}</span>
+
+              {/* ── Bottom divider ── */}
+              <div style={{ height: '2px', background: '#111', marginBottom: '20px' }} />
+
+              {/* ── Footer ── */}
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ fontSize: '13px', fontWeight: '700', color: '#111', margin: '0 0 6px' }}>
+                  Thank you for your business!
+                </p>
+                <p style={{ fontSize: '10px', color: '#bbb', margin: '0 0 2px', letterSpacing: '0.5px' }}>
+                  This is a computer-generated invoice and does not require a signature.
+                </p>
+                <p style={{ fontSize: '10px', color: '#ccc', margin: 0 }}>
+                  SupplyChain AI · {new Date().getFullYear()}
+                </p>
               </div>
-            </div>
-            <div className="mt-20 text-center">
-              <p className="text-slate-300 font-black uppercase text-[9px] tracking-[0.5em] mb-1">
-                Thank you for your business
-              </p>
-              <p className="text-slate-200 text-[8px] font-bold italic">
-                Generated by Smart SupplyChain AI System
-              </p>
             </div>
           </div>
         )}
