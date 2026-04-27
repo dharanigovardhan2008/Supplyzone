@@ -1299,5 +1299,5 @@ Try asking:
     </div>
   );
 };
-
+export default Chatbot;
 export default Chatbot;
