@@ -35,8 +35,7 @@ const Billing = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastBill, setLastBill] = useState<any>(null);
 
-  const categories = ['All', 'Electronics', 'Fashion', 'Food', 'Industrial'];
-
+  const categories = ['All', ...Array.from(new Set(products.map(p => p.category))).sort()];
   const filteredProducts = products.filter(p => {
     const matchesSearch =
       p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
