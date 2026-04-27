@@ -6,19 +6,30 @@ import {
   Minus,
   Sparkles,
   Bot,
-  RefreshCw
+  RefreshCw,
+  Package,
+  DollarSign,
+  TrendingUp,
+  AlertCircle,
+  BarChart3,
+  ShoppingCart
 } from "lucide-react";
+
+interface Message {
+  role: "user" | "ai";
+  content: string;
+}
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     {
       role: "ai",
       content:
-        "👋 Welcome to ChainAI Assistant.\nHow can I help your business today?"
+        "👋 Hi! I'm ChainAI.\nAsk me about stock, sales, revenue or reports."
     }
   ]);
 
@@ -31,32 +42,118 @@ const Chatbot = () => {
     }
   }, [messages, loading]);
 
-  const reply = (msg: string) => {
+  const match = (
+    text: string,
+    words: string[]
+  ) => words.some((w) => text.includes(w));
+
+  const getReply = (
+    msg: string
+  ): string => {
     const text = msg.toLowerCase();
 
-    if (text.includes("hi"))
-      return "👋 Hello! Welcome back.";
+    if (
+      match(text, [
+        "hi",
+        "hello",
+        "hey"
+      ])
+    )
+      return "👋 Hello! How can I help today?";
 
-    if (text.includes("stock"))
-      return "📦 Inventory looks healthy.";
+    if (
+      match(text, [
+        "stock",
+        "inventory"
+      ])
+    )
+      return "📦 Stock is stable. Few items may need reorder soon.";
 
-    if (text.includes("sales"))
-      return "💰 Sales are growing steadily.";
+    if (
+      match(text, [
+        "sales",
+        "orders"
+      ])
+    )
+      return "📈 Sales are active and performing well today.";
 
-    if (text.includes("help"))
-      return "🤖 Ask me about stock, sales, revenue or products.";
+    if (
+      match(text, [
+        "revenue",
+        "income"
+      ])
+    )
+      return "💰 Revenue is healthy with steady daily growth.";
 
-    return "🤖 I understood your request. Please give more details.";
+    if (
+      match(text, [
+        "profit",
+        "margin"
+      ])
+    )
+      return "💵 Profit margins are moderate and improving.";
+
+    if (
+      match(text, [
+        "top",
+        "best",
+        "popular"
+      ])
+    )
+      return "🏆 Top sellers: Mouse, Charger, Earbuds.";
+
+    if (
+      match(text, [
+        "reorder",
+        "low stock"
+      ])
+    )
+      return "⚠️ Reorder suggested for Keyboard and USB Cable.";
+
+    if (
+      match(text, [
+        "report",
+        "analytics"
+      ])
+    )
+      return "📊 Overall business performance looks positive.";
+
+    if (
+      match(text, [
+        "today"
+      ])
+    )
+      return "📅 Today: Good traffic, active sales, stable revenue.";
+
+    if (
+      match(text, [
+        "help"
+      ])
+    )
+      return "🤖 Ask: stock, sales, revenue, profit, report.";
+
+    if (
+      match(text, [
+        "thanks",
+        "thank"
+      ])
+    )
+      return "😊 You're welcome!";
+
+    return "🤖 Ask about stock, sales, revenue or reports.";
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
 
-    const msg = input;
+    const msg = input.trim();
 
     setMessages((prev) => [
       ...prev,
-      { role: "user", content: msg }
+      {
+        role: "user",
+        content: msg
+      }
     ]);
 
     setInput("");
@@ -67,11 +164,12 @@ const Chatbot = () => {
         ...prev,
         {
           role: "ai",
-          content: reply(msg)
+          content: getReply(msg)
         }
       ]);
+
       setLoading(false);
-    }, 700);
+    }, 500);
   };
 
   const resetChat = () => {
@@ -79,71 +177,97 @@ const Chatbot = () => {
       {
         role: "ai",
         content:
-          "👋 Welcome to ChainAI Assistant.\nHow can I help your business today?"
+          "👋 Hi! I'm ChainAI.\nAsk me about stock, sales, revenue or reports."
       }
     ]);
   };
+
+  const suggestions = [
+    {
+      text: "Stock",
+      icon: Package
+    },
+    {
+      text: "Sales",
+      icon: TrendingUp
+    },
+    {
+      text: "Revenue",
+      icon: DollarSign
+    },
+    {
+      text: "Low Stock",
+      icon: AlertCircle
+    },
+    {
+      text: "Report",
+      icon: BarChart3
+    },
+    {
+      text: "Today",
+      icon: ShoppingCart
+    }
+  ];
 
   return (
     <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end">
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[410px] h-[620px] rounded-[34px] overflow-hidden bg-white shadow-[0_25px_80px_rgba(0,0,0,0.15)] border border-slate-100 mb-5 flex flex-col animate-in slide-in-from-bottom-10 duration-300">
+        <div className="w-[390px] h-[590px] bg-white rounded-[34px] shadow-2xl border border-slate-100 overflow-hidden mb-5 flex flex-col">
 
           {/* Header */}
-          <div className="relative p-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
+          <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 px-5 py-4 flex items-center justify-between">
 
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-
-            <div className="relative flex items-center justify-between">
-              <div className="flex items-center gap-3">
-
-                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                  <Bot className="text-white w-6 h-6" />
-                </div>
-
-                <div>
-                  <h3 className="text-white font-bold text-lg">
-                    ChainAI
-                  </h3>
-                  <p className="text-white/70 text-xs">
-                    Smart Assistant Online
-                  </p>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-white/20 flex items-center justify-center">
+                <Bot className="w-6 h-6 text-white" />
               </div>
 
-              <div className="flex items-center gap-2">
-
-                <button
-                  onClick={resetChat}
-                  className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
+              <div>
+                <h3 className="text-white font-bold text-base">
+                  ChainAI
+                </h3>
+                <p className="text-white/70 text-xs">
+                  Smart Assistant
+                </p>
               </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+
+              <button
+                onClick={resetChat}
+                className="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center"
+              >
+                <RefreshCw className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() =>
+                  setIsOpen(false)
+                }
+                className="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center"
+              >
+                <Minus className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() =>
+                  setIsOpen(false)
+                }
+                className="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
             </div>
           </div>
 
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="flex-1 overflow-y-auto px-5 py-5 bg-gradient-to-b from-slate-50 to-white space-y-4"
+            className="flex-1 overflow-y-auto px-4 py-5 bg-gradient-to-b from-slate-50 to-white space-y-3"
           >
             {messages.map((msg, i) => (
               <div
@@ -155,10 +279,10 @@ const Chatbot = () => {
                 }`}
               >
                 <div
-                  className={`max-w-[82%] px-4 py-3 rounded-3xl text-sm leading-relaxed whitespace-pre-line ${
+                  className={`max-w-[82%] px-4 py-3 rounded-3xl text-sm leading-relaxed ${
                     msg.role === "user"
-                      ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-br-md shadow-lg"
-                      : "bg-white border border-slate-100 text-slate-700 rounded-bl-md shadow-md"
+                      ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-br-md"
+                      : "bg-white border border-slate-100 shadow-sm text-slate-700 rounded-bl-md"
                   }`}
                 >
                   {msg.content}
@@ -168,31 +292,29 @@ const Chatbot = () => {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-white px-4 py-3 rounded-3xl rounded-bl-md shadow-md border border-slate-100">
+                <div className="bg-white border border-slate-100 shadow-sm px-4 py-3 rounded-3xl rounded-bl-md">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce"></div>
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce delay-75"></div>
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce delay-150"></div>
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce delay-75"></div>
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce delay-150"></div>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Quick Suggestions */}
-          <div className="px-4 pt-3 pb-1 flex flex-wrap gap-2 bg-white">
-            {[
-              "Stock",
-              "Sales",
-              "Revenue",
-              "Help"
-            ].map((item, i) => (
+          {/* Suggestions */}
+          <div className="px-4 py-3 flex flex-wrap gap-2 bg-white border-t border-slate-100">
+            {suggestions.map((item, i) => (
               <button
                 key={i}
-                onClick={() => setInput(item)}
-                className="px-3 py-2 text-xs font-medium rounded-full bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 transition-all"
+                onClick={() =>
+                  setInput(item.text)
+                }
+                className="px-3 py-2 rounded-full bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-xs font-medium flex items-center gap-1 transition-all"
               >
-                {item}
+                <item.icon className="w-3 h-3" />
+                {item.text}
               </button>
             ))}
           </div>
@@ -206,24 +328,27 @@ const Chatbot = () => {
                 type="text"
                 placeholder="Ask ChainAI..."
                 onChange={(e) =>
-                  setInput(e.target.value)
+                  setInput(
+                    e.target.value
+                  )
                 }
                 onKeyDown={(e) =>
                   e.key === "Enter" &&
                   handleSend()
                 }
-                className="w-full rounded-full border-2 border-slate-200 focus:border-indigo-500 outline-none px-5 py-4 pr-14 text-sm transition-all"
+                className="w-full h-12 rounded-full border-2 border-slate-200 focus:border-indigo-500 outline-none px-5 pr-14 text-sm"
               />
 
               <button
                 onClick={handleSend}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg hover:scale-105 transition-all"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex items-center justify-center"
               >
                 <Send className="w-4 h-4" />
               </button>
 
             </div>
           </div>
+
         </div>
       )}
 
@@ -232,18 +357,18 @@ const Chatbot = () => {
         onClick={() =>
           setIsOpen(!isOpen)
         }
-        className="group px-6 py-4 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white shadow-[0_20px_50px_rgba(99,102,241,0.45)] flex items-center gap-3 hover:scale-105 transition-all"
+        className="px-6 h-14 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 text-white shadow-2xl flex items-center gap-3 hover:scale-105 transition-all"
       >
         <div className="relative">
           <MessageSquare className="w-5 h-5" />
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse"></span>
         </div>
 
-        <span className="font-bold tracking-wide">
+        <span className="font-bold">
           AI Assistant
         </span>
 
-        <Sparkles className="w-4 h-4 opacity-80 group-hover:rotate-12 transition-all" />
+        <Sparkles className="w-4 h-4" />
       </button>
     </div>
   );
