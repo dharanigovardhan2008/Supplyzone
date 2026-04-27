@@ -2,7 +2,9 @@ import { Product } from './types';
 
 export const SAMPLE_PRODUCTS: Partial<Product>[] = [
 
-  // ── Electronics ─────────────────────────────────────────────────────────────
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                    ELECTRONICS                       ║
+  // ╚══════════════════════════════════════════════════════╝
   {
     name: "MacBook Pro M3",
     category: "Electronics",
@@ -10,16 +12,31 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     selling_price: 169900,
     cost_price: 145000,
     current_stock: 12,
-    reorder_point: 10,
+    reorder_point: 5,
     max_stock: 50,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
     lead_time_days: 7,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"
   },
   {
-    name: "Sony WH-1000XM5",
+    name: "iPhone 15 Pro",
+    category: "Electronics",
+    sku: "ELEC-002",
+    selling_price: 134900,
+    cost_price: 110000,
+    current_stock: 30,
+    reorder_point: 10,
+    max_stock: 100,
+    supplier_name: "TechSource India",
+    supplier_contact: "+91 9876543210",
+    lead_time_days: 5,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&q=80"
+  },
+  {
+    name: "Sony WH-1000XM5 Headphones",
     category: "Electronics",
     sku: "ELEC-003",
     selling_price: 29900,
@@ -31,7 +48,7 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543210",
     lead_time_days: 5,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1618366712277-7216466bc626?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"
   },
   {
     name: "iPad Pro 12.9",
@@ -40,48 +57,33 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     selling_price: 119900,
     cost_price: 98000,
     current_stock: 8,
-    reorder_point: 15,
+    reorder_point: 5,
     max_stock: 40,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
     lead_time_days: 7,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&q=80"
   },
   {
-    name: "Smart LED Bulb 12W",
+    name: "Samsung 4K Smart TV 55\"",
     category: "Electronics",
     sku: "ELEC-005",
-    selling_price: 899,
-    cost_price: 450,
-    current_stock: 150,
-    reorder_point: 40,
-    max_stock: 500,
+    selling_price: 69999,
+    cost_price: 52000,
+    current_stock: 15,
+    reorder_point: 5,
+    max_stock: 40,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
-    lead_time_days: 4,
-    unit: "units",
-    image_url: "https://images.unsplash.com/photo-1550985616-10810253b84d?auto=format&fit=crop&q=80&w=800"
+    lead_time_days: 10,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1593359677879-a4bb92f829e1?w=800&q=80"
   },
   {
-    name: "Samsung Galaxy S24",
+    name: "Mechanical Gaming Keyboard",
     category: "Electronics",
     sku: "ELEC-006",
-    selling_price: 79999,
-    cost_price: 62000,
-    current_stock: 35,
-    reorder_point: 12,
-    max_stock: 100,
-    supplier_name: "TechSource India",
-    supplier_contact: "+91 9876543210",
-    lead_time_days: 5,
-    unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Mechanical Keyboard",
-    category: "Electronics",
-    sku: "ELEC-007",
     selling_price: 7999,
     cost_price: 4500,
     current_stock: 45,
@@ -91,12 +93,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543210",
     lead_time_days: 5,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&q=80"
   },
   {
-    name: "Wireless Mouse",
+    name: "Logitech Wireless Mouse",
     category: "Electronics",
-    sku: "ELEC-008",
+    sku: "ELEC-007",
     selling_price: 1899,
     cost_price: 950,
     current_stock: 120,
@@ -106,27 +108,57 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543210",
     lead_time_days: 4,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80"
   },
   {
-    name: "Smart Watch",
+    name: "Apple Watch Series 9",
     category: "Electronics",
-    sku: "ELEC-009",
-    selling_price: 12999,
-    cost_price: 8000,
-    current_stock: 60,
-    reorder_point: 12,
-    max_stock: 200,
+    sku: "ELEC-008",
+    selling_price: 41900,
+    cost_price: 32000,
+    current_stock: 35,
+    reorder_point: 10,
+    max_stock: 100,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
     lead_time_days: 6,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=800&q=80"
   },
   {
-    name: "Portable Speaker",
+    name: "Sony WF-1000XM5 Earbuds",
+    category: "Electronics",
+    sku: "ELEC-009",
+    selling_price: 19900,
+    cost_price: 13000,
+    current_stock: 60,
+    reorder_point: 15,
+    max_stock: 200,
+    supplier_name: "TechSource India",
+    supplier_contact: "+91 9876543210",
+    lead_time_days: 5,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&q=80"
+  },
+  {
+    name: "Dell 27\" Monitor",
     category: "Electronics",
     sku: "ELEC-010",
+    selling_price: 28999,
+    cost_price: 21000,
+    current_stock: 20,
+    reorder_point: 5,
+    max_stock: 60,
+    supplier_name: "TechSource India",
+    supplier_contact: "+91 9876543210",
+    lead_time_days: 7,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80"
+  },
+  {
+    name: "Portable Bluetooth Speaker",
+    category: "Electronics",
+    sku: "ELEC-011",
     selling_price: 4999,
     cost_price: 2800,
     current_stock: 55,
@@ -136,27 +168,27 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543210",
     lead_time_days: 5,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&q=80"
   },
   {
-    name: "Webcam HD 1080p",
+    name: "Canon DSLR Camera",
     category: "Electronics",
-    sku: "ELEC-011",
-    selling_price: 3299,
-    cost_price: 1800,
-    current_stock: 65,
-    reorder_point: 12,
-    max_stock: 200,
+    sku: "ELEC-012",
+    selling_price: 54999,
+    cost_price: 42000,
+    current_stock: 10,
+    reorder_point: 3,
+    max_stock: 30,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
-    lead_time_days: 4,
+    lead_time_days: 10,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80"
   },
   {
     name: "USB-C Hub 7-in-1",
     category: "Electronics",
-    sku: "ELEC-012",
+    sku: "ELEC-013",
     selling_price: 2499,
     cost_price: 1200,
     current_stock: 75,
@@ -166,59 +198,61 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543210",
     lead_time_days: 4,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1625895197185-efcec01cffe0?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1625895197185-efcec01cffe0?w=800&q=80"
   },
   {
-    name: "Wireless Earbuds",
+    name: "Smart LED Bulb 12W",
     category: "Electronics",
-    sku: "ELEC-013",
-    selling_price: 3499,
-    cost_price: 2000,
-    current_stock: 80,
-    reorder_point: 15,
-    max_stock: 300,
+    sku: "ELEC-014",
+    selling_price: 899,
+    cost_price: 450,
+    current_stock: 150,
+    reorder_point: 40,
+    max_stock: 500,
     supplier_name: "TechSource India",
     supplier_contact: "+91 9876543210",
-    lead_time_days: 5,
-    unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=800"
+    lead_time_days: 4,
+    unit: "units",
+    image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
   },
 
-  // ── Fashion ──────────────────────────────────────────────────────────────────
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                      FASHION                         ║
+  // ╚══════════════════════════════════════════════════════╝
   {
     name: "Premium Leather Jacket",
     category: "Fashion",
-    sku: "FASH-002",
+    sku: "FASH-001",
     selling_price: 8999,
     cost_price: 4500,
     current_stock: 15,
-    reorder_point: 10,
+    reorder_point: 5,
     max_stock: 60,
     supplier_name: "FashionHub Mumbai",
     supplier_contact: "+91 9876543211",
     lead_time_days: 10,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80"
   },
   {
     name: "Nike Air Jordan 1",
     category: "Fashion",
-    sku: "FASH-003",
+    sku: "FASH-002",
     selling_price: 15999,
     cost_price: 11000,
     current_stock: 20,
-    reorder_point: 12,
+    reorder_point: 8,
     max_stock: 80,
     supplier_name: "FashionHub Mumbai",
     supplier_contact: "+91 9876543211",
     lead_time_days: 8,
     unit: "pairs",
-    image_url: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
   },
   {
     name: "Classic White T-Shirt",
     category: "Fashion",
-    sku: "FASH-004",
+    sku: "FASH-003",
     selling_price: 599,
     cost_price: 250,
     current_stock: 200,
@@ -228,25 +262,40 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 5,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
   },
   {
-    name: "Denim Jacket",
+    name: "Slim Fit Denim Jeans",
     category: "Fashion",
-    sku: "FASH-005",
+    sku: "FASH-004",
     selling_price: 2499,
-    cost_price: 1200,
-    current_stock: 90,
-    reorder_point: 20,
-    max_stock: 200,
+    cost_price: 1100,
+    current_stock: 100,
+    reorder_point: 25,
+    max_stock: 300,
     supplier_name: "FashionHub Mumbai",
     supplier_contact: "+91 9876543211",
     lead_time_days: 7,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80"
   },
   {
-    name: "Leather Wallet",
+    name: "Sports Hoodie",
+    category: "Fashion",
+    sku: "FASH-005",
+    selling_price: 1999,
+    cost_price: 900,
+    current_stock: 130,
+    reorder_point: 25,
+    max_stock: 350,
+    supplier_name: "FashionHub Mumbai",
+    supplier_contact: "+91 9876543211",
+    lead_time_days: 6,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80"
+  },
+  {
+    name: "Leather Bifold Wallet",
     category: "Fashion",
     sku: "FASH-006",
     selling_price: 1299,
@@ -258,7 +307,7 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 6,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80"
   },
   {
     name: "Polarized Sunglasses",
@@ -273,27 +322,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 6,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80"
   },
   {
-    name: "Sports Hoodie",
+    name: "Travel Backpack 30L",
     category: "Fashion",
     sku: "FASH-008",
-    selling_price: 1999,
-    cost_price: 900,
-    current_stock: 130,
-    reorder_point: 25,
-    max_stock: 350,
-    supplier_name: "FashionHub Mumbai",
-    supplier_contact: "+91 9876543211",
-    lead_time_days: 6,
-    unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    name: "Travel Backpack",
-    category: "Fashion",
-    sku: "FASH-009",
     selling_price: 2999,
     cost_price: 1400,
     current_stock: 75,
@@ -303,12 +337,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 7,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
   },
   {
     name: "Analog Wrist Watch",
     category: "Fashion",
-    sku: "FASH-010",
+    sku: "FASH-009",
     selling_price: 5999,
     cost_price: 3200,
     current_stock: 40,
@@ -318,12 +352,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 8,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
   },
   {
-    name: "Baseball Cap",
+    name: "Snapback Baseball Cap",
     category: "Fashion",
-    sku: "FASH-011",
+    sku: "FASH-010",
     selling_price: 699,
     cost_price: 300,
     current_stock: 200,
@@ -333,14 +367,61 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543211",
     lead_time_days: 5,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80"
+  },
+  {
+    name: "Running Sneakers",
+    category: "Fashion",
+    sku: "FASH-011",
+    selling_price: 3999,
+    cost_price: 2000,
+    current_stock: 90,
+    reorder_point: 20,
+    max_stock: 250,
+    supplier_name: "FashionHub Mumbai",
+    supplier_contact: "+91 9876543211",
+    lead_time_days: 8,
+    unit: "pairs",
+    image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+  },
+  {
+    name: "Formal Dress Shirt",
+    category: "Fashion",
+    sku: "FASH-012",
+    selling_price: 1499,
+    cost_price: 650,
+    current_stock: 120,
+    reorder_point: 25,
+    max_stock: 350,
+    supplier_name: "FashionHub Mumbai",
+    supplier_contact: "+91 9876543211",
+    lead_time_days: 6,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80"
+  },
+  {
+    name: "Silk Evening Dress",
+    category: "Fashion",
+    sku: "FASH-013",
+    selling_price: 4499,
+    cost_price: 2200,
+    current_stock: 45,
+    reorder_point: 10,
+    max_stock: 120,
+    supplier_name: "FashionHub Mumbai",
+    supplier_contact: "+91 9876543211",
+    lead_time_days: 9,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&q=80"
   },
 
-  // ── Food ─────────────────────────────────────────────────────────────────────
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                       FOOD                           ║
+  // ╚══════════════════════════════════════════════════════╝
   {
-    name: "Organic Green Tea",
+    name: "Organic Green Tea 100g",
     category: "Food",
-    sku: "FOOD-002",
+    sku: "FOOD-001",
     selling_price: 450,
     cost_price: 280,
     current_stock: 200,
@@ -350,27 +431,27 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 3,
     unit: "packs",
-    image_url: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80"
   },
   {
     name: "Artisan Dark Chocolate",
     category: "Food",
-    sku: "FOOD-003",
+    sku: "FOOD-002",
     selling_price: 599,
     cost_price: 350,
-    current_stock: 45,
-    reorder_point: 20,
-    max_stock: 200,
+    current_stock: 180,
+    reorder_point: 40,
+    max_stock: 600,
     supplier_name: "FoodCo Delhi",
     supplier_contact: "+91 9876543212",
     lead_time_days: 5,
     unit: "bars",
-    image_url: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=80"
   },
   {
-    name: "Premium Coffee Beans",
+    name: "Premium Coffee Beans 250g",
     category: "Food",
-    sku: "FOOD-004",
+    sku: "FOOD-003",
     selling_price: 899,
     cost_price: 520,
     current_stock: 120,
@@ -380,12 +461,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 4,
     unit: "packs",
-    image_url: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80"
   },
   {
-    name: "Extra Virgin Olive Oil",
+    name: "Extra Virgin Olive Oil 1L",
     category: "Food",
-    sku: "FOOD-005",
+    sku: "FOOD-004",
     selling_price: 699,
     cost_price: 400,
     current_stock: 120,
@@ -395,12 +476,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 5,
     unit: "bottles",
-    image_url: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&q=80"
   },
   {
-    name: "Mixed Nuts 500g",
+    name: "Mixed Nuts & Dry Fruits 500g",
     category: "Food",
-    sku: "FOOD-006",
+    sku: "FOOD-005",
     selling_price: 599,
     cost_price: 320,
     current_stock: 160,
@@ -410,12 +491,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 3,
     unit: "packs",
-    image_url: "https://images.unsplash.com/photo-1563412580953-81a4f3f853f9?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1563412580953-81a4f3f853f9?w=800&q=80"
   },
   {
     name: "Pure Honey Jar 500g",
     category: "Food",
-    sku: "FOOD-007",
+    sku: "FOOD-006",
     selling_price: 449,
     cost_price: 240,
     current_stock: 140,
@@ -425,12 +506,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 3,
     unit: "jars",
-    image_url: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80"
   },
   {
-    name: "Protein Bar Pack",
+    name: "Whey Protein Bar Pack",
     category: "Food",
-    sku: "FOOD-008",
+    sku: "FOOD-007",
     selling_price: 799,
     cost_price: 450,
     current_stock: 180,
@@ -440,12 +521,87 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 4,
     unit: "packs",
-    image_url: "https://images.unsplash.com/photo-1622484212850-eb596d769edc?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=800&q=80"
   },
   {
-    name: "Instant Noodles Pack",
+    name: "Basmati Rice 5kg",
+    category: "Food",
+    sku: "FOOD-008",
+    selling_price: 699,
+    cost_price: 420,
+    current_stock: 250,
+    reorder_point: 60,
+    max_stock: 800,
+    supplier_name: "FoodCo Delhi",
+    supplier_contact: "+91 9876543212",
+    lead_time_days: 2,
+    unit: "bags",
+    image_url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&q=80"
+  },
+  {
+    name: "Fresh Orange Juice 1L",
     category: "Food",
     sku: "FOOD-009",
+    selling_price: 199,
+    cost_price: 100,
+    current_stock: 300,
+    reorder_point: 80,
+    max_stock: 1000,
+    supplier_name: "FoodCo Delhi",
+    supplier_contact: "+91 9876543212",
+    lead_time_days: 1,
+    unit: "bottles",
+    image_url: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=800&q=80"
+  },
+  {
+    name: "Avocado (Pack of 4)",
+    category: "Food",
+    sku: "FOOD-010",
+    selling_price: 299,
+    cost_price: 160,
+    current_stock: 200,
+    reorder_point: 50,
+    max_stock: 600,
+    supplier_name: "FoodCo Delhi",
+    supplier_contact: "+91 9876543212",
+    lead_time_days: 2,
+    unit: "packs",
+    image_url: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&q=80"
+  },
+  {
+    name: "Greek Yogurt 400g",
+    category: "Food",
+    sku: "FOOD-011",
+    selling_price: 149,
+    cost_price: 80,
+    current_stock: 350,
+    reorder_point: 80,
+    max_stock: 1000,
+    supplier_name: "FoodCo Delhi",
+    supplier_contact: "+91 9876543212",
+    lead_time_days: 1,
+    unit: "units",
+    image_url: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80"
+  },
+  {
+    name: "Sourdough Bread Loaf",
+    category: "Food",
+    sku: "FOOD-012",
+    selling_price: 249,
+    cost_price: 130,
+    current_stock: 150,
+    reorder_point: 40,
+    max_stock: 500,
+    supplier_name: "FoodCo Delhi",
+    supplier_contact: "+91 9876543212",
+    lead_time_days: 1,
+    unit: "loaves",
+    image_url: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80"
+  },
+  {
+    name: "Instant Noodles Pack x5",
+    category: "Food",
+    sku: "FOOD-013",
     selling_price: 199,
     cost_price: 90,
     current_stock: 300,
@@ -455,44 +611,46 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543212",
     lead_time_days: 2,
     unit: "packs",
-    image_url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80"
   },
 
-  // ── Industrial ───────────────────────────────────────────────────────────────
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                    INDUSTRIAL                        ║
+  // ╚══════════════════════════════════════════════════════╝
   {
     name: "Industrial Air Compressor",
     category: "Industrial",
-    sku: "IND-002",
+    sku: "IND-001",
     selling_price: 45000,
     cost_price: 35000,
     current_stock: 3,
-    reorder_point: 5,
+    reorder_point: 2,
     max_stock: 15,
     supplier_name: "IndustrialParts Chennai",
     supplier_contact: "+91 9876543213",
     lead_time_days: 15,
     unit: "units",
-    image_url: "https://images.unsplash.com/photo-1530124560676-5f96ea27838d?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1530124560676-5f96ea27838d?w=800&q=80"
   },
   {
     name: "Heavy Duty Drill Machine",
     category: "Industrial",
-    sku: "IND-003",
+    sku: "IND-002",
     selling_price: 12500,
     cost_price: 9000,
     current_stock: 18,
-    reorder_point: 8,
+    reorder_point: 5,
     max_stock: 50,
     supplier_name: "IndustrialParts Chennai",
     supplier_contact: "+91 9876543213",
     lead_time_days: 12,
     unit: "units",
-    image_url: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=80"
   },
   {
     name: "Industrial Electric Motor",
     category: "Industrial",
-    sku: "IND-004",
+    sku: "IND-003",
     selling_price: 8999,
     cost_price: 5800,
     current_stock: 30,
@@ -502,12 +660,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 14,
     unit: "units",
-    image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1565060169194-19fabf63012c?w=800&q=80"
   },
   {
     name: "Safety Helmet",
     category: "Industrial",
-    sku: "IND-005",
+    sku: "IND-004",
     selling_price: 1299,
     cost_price: 650,
     current_stock: 100,
@@ -517,12 +675,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 7,
     unit: "pieces",
-    image_url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1618090584176-7132b9911657?w=800&q=80"
   },
   {
-    name: "Steel Wrench Set",
+    name: "Chrome Steel Wrench Set",
     category: "Industrial",
-    sku: "IND-006",
+    sku: "IND-005",
     selling_price: 2199,
     cost_price: 1100,
     current_stock: 70,
@@ -532,12 +690,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 8,
     unit: "sets",
-    image_url: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80"
   },
   {
     name: "Industrial Work Gloves",
     category: "Industrial",
-    sku: "IND-007",
+    sku: "IND-006",
     selling_price: 499,
     cost_price: 220,
     current_stock: 200,
@@ -547,12 +705,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 5,
     unit: "pairs",
-    image_url: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?w=800&q=80"
   },
   {
     name: "Angle Grinder 750W",
     category: "Industrial",
-    sku: "IND-008",
+    sku: "IND-007",
     selling_price: 3499,
     cost_price: 1900,
     current_stock: 40,
@@ -562,12 +720,12 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 10,
     unit: "units",
-    image_url: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&q=80"
   },
   {
-    name: "Extension Cord 10m",
+    name: "Heavy Duty Extension Cord 10m",
     category: "Industrial",
-    sku: "IND-009",
+    sku: "IND-008",
     selling_price: 899,
     cost_price: 450,
     current_stock: 90,
@@ -577,6 +735,66 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     supplier_contact: "+91 9876543213",
     lead_time_days: 5,
     unit: "units",
-    image_url: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&q=80&w=800"
+    image_url: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80"
+  },
+  {
+    name: "Digital Vernier Caliper",
+    category: "Industrial",
+    sku: "IND-009",
+    selling_price: 1599,
+    cost_price: 850,
+    current_stock: 55,
+    reorder_point: 12,
+    max_stock: 150,
+    supplier_name: "IndustrialParts Chennai",
+    supplier_contact: "+91 9876543213",
+    lead_time_days: 7,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1609205807107-2d220f793e52?w=800&q=80"
+  },
+  {
+    name: "Industrial Tool Box",
+    category: "Industrial",
+    sku: "IND-010",
+    selling_price: 3999,
+    cost_price: 2200,
+    current_stock: 35,
+    reorder_point: 8,
+    max_stock: 80,
+    supplier_name: "IndustrialParts Chennai",
+    supplier_contact: "+91 9876543213",
+    lead_time_days: 8,
+    unit: "units",
+    image_url: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80"
+  },
+  {
+    name: "Safety Goggles",
+    category: "Industrial",
+    sku: "IND-011",
+    selling_price: 399,
+    cost_price: 180,
+    current_stock: 180,
+    reorder_point: 35,
+    max_stock: 500,
+    supplier_name: "IndustrialParts Chennai",
+    supplier_contact: "+91 9876543213",
+    lead_time_days: 5,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80"
+  },
+  {
+    name: "Industrial Tape Measure 10m",
+    category: "Industrial",
+    sku: "IND-012",
+    selling_price: 599,
+    cost_price: 280,
+    current_stock: 130,
+    reorder_point: 25,
+    max_stock: 400,
+    supplier_name: "IndustrialParts Chennai",
+    supplier_contact: "+91 9876543213",
+    lead_time_days: 5,
+    unit: "units",
+    image_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
   },
 ];
