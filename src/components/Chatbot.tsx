@@ -5,15 +5,19 @@ import {
   X,
   Minus,
   Sparkles,
-  Bot,
-  RefreshCw,
-  Package,
   TrendingUp,
+  Package,
   DollarSign,
   AlertCircle,
+  RefreshCw,
+  Bot,
+  ShoppingCart,
   BarChart3,
   Layers3,
-  ShoppingCart
+  BadgeIndianRupee,
+  Truck,
+  Users,
+  ClipboardList
 } from "lucide-react";
 
 const Chatbot = () => {
@@ -25,7 +29,7 @@ const Chatbot = () => {
     {
       role: "ai",
       content:
-        "👋 Welcome to ChainAI Assistant.\nAsk me about stock, revenue, sales, reorder, products, suppliers, analytics, categories and reports."
+        "👋 Welcome to ChainAI Assistant.\nI can help you with inventory, revenue, sales, suppliers, reorder planning, reports and analytics.\nWhat would you like to know today?"
     }
   ]);
 
@@ -46,295 +50,282 @@ const Chatbot = () => {
   const getReply = (msg: string) => {
     const text = msg.toLowerCase();
 
-    /* Greetings */
     if (
       has(text, [
         "hi",
         "hello",
-        "hey",
-        "yo"
+        "hey"
       ])
-    )
-      return "👋 Hello! Welcome back to ChainAI.";
+    ) {
+      return "👋 Hello! Welcome back to ChainAI Assistant.\nI’m ready to help you with business insights, stock management and performance reports.";
+    }
 
-    /* Help */
-    if (
-      has(text, [
-        "help",
-        "menu",
-        "options",
-        "what can you do"
-      ])
-    )
-      return `🤖 I can help with:
-
-📦 Inventory
-💰 Revenue
-📈 Sales
-⚠️ Reorder
-🏆 Best Products
-📂 Categories
-🚚 Suppliers
-📊 Reports
-📅 Daily Summary`;
-
-    /* Stock */
     if (
       has(text, [
         "stock",
-        "inventory",
-        "items",
-        "products"
+        "inventory"
       ])
-    )
-      return `📦 Inventory Status
+    ) {
+      return `📦 Inventory Overview
 
-• Total Products: 148
-• In Stock: 132
-• Low Stock: 16
-• Out of Stock: 3`;
+Your inventory is currently in stable condition.
 
-    /* Low stock */
-    if (
-      has(text, [
-        "low stock",
-        "reorder",
-        "restock",
-        "alert"
-      ])
-    )
-      return `⚠️ Reorder Recommended:
+• Most products are available in stock
+• A few items may reach reorder level soon
+• No major shortage risk detected
 
-1. Wireless Mouse
-2. Keyboard
-3. USB Cable
-4. Printer Ink
-5. Router`;
+Recommendation:
+Review fast-moving products and refill early to avoid sales loss.`;
+    }
 
-    /* Revenue */
     if (
       has(text, [
         "revenue",
         "income",
-        "money",
-        "earning"
+        "money"
       ])
-    )
+    ) {
       return `💰 Revenue Summary
 
-• Today: ₹12,450
-• This Week: ₹86,200
-• This Month: ₹3,48,900`;
+Your revenue trend appears positive.
 
-    /* Sales */
+• Daily collections are steady
+• Weekly growth is healthy
+• Average billing value is improving
+
+Recommendation:
+Focus on premium products and combo offers to increase revenue further.`;
+    }
+
     if (
       has(text, [
         "sales",
-        "sold",
         "orders"
       ])
-    )
+    ) {
       return `📈 Sales Performance
 
-• Orders Today: 32
-• Completed: 29
-• Pending: 3
-• Growth: +12%`;
+Sales activity is active and consistent.
 
-    /* Profit */
+• Orders are being generated regularly
+• Repeat customer purchases are visible
+• Product movement is healthy
+
+Recommendation:
+Promote top-selling products to boost conversions.`;
+    }
+
     if (
       has(text, [
         "profit",
         "margin"
       ])
-    )
-      return `💵 Profit Overview
+    ) {
+      return `💵 Profit Analysis
 
-• Today Profit: ₹4,280
-• Avg Margin: 28%
-• Best Margin Product: Headphones`;
+Profit margins are moderate.
 
-    /* Best products */
+• High-margin accessories perform well
+• Core products bring steady volume
+• Bundled sales can improve margin
+
+Recommendation:
+Push profitable categories in your marketing campaigns.`;
+    }
+
     if (
       has(text, [
         "top",
         "best",
-        "popular",
-        "selling"
+        "popular"
       ])
-    )
-      return `🏆 Best Selling Products
+    ) {
+      return `🏆 Top Performing Products
+
+These products are attracting strong demand:
 
 1. Wireless Mouse
 2. Smart Watch
-3. Keyboard
-4. Charger
-5. Earbuds`;
+3. Earbuds
+4. Keyboard
+5. Mobile Charger
 
-    /* Categories */
-    if (
-      has(text, [
-        "category",
-        "categories",
-        "types"
-      ])
-    )
-      return `📂 Categories
+Recommendation:
+Keep extra stock for these items and feature them on homepage banners.`;
+    }
 
-• Electronics
-• Accessories
-• Networking
-• Office
-• Home Devices`;
-
-    /* Suppliers */
     if (
       has(text, [
         "supplier",
-        "vendors",
         "vendor"
       ])
-    )
-      return `🚚 Supplier Insights
+    ) {
+      return `🚚 Supplier Report
 
-• Active Suppliers: 12
-• Best Supplier: TechSource Ltd
-• Delayed Orders: 2`;
+Your supplier network is functioning normally.
 
-    /* Delivery */
-    if (
-      has(text, [
-        "delivery",
-        "shipment",
-        "dispatch"
-      ])
-    )
-      return `🚛 Delivery Status
+• Most deliveries are on time
+• A few delayed shipments may need follow-up
+• Existing suppliers are reliable
 
-• Dispatched Today: 18
-• In Transit: 9
-• Delivered: 24`;
+Recommendation:
+Maintain backup vendors for critical products.`;
+    }
 
-    /* Customer */
     if (
       has(text, [
         "customer",
-        "clients",
         "buyer"
       ])
-    )
-      return `👥 Customer Stats
+    ) {
+      return `👥 Customer Insights
 
-• New Customers Today: 7
-• Returning Customers: 19
-• Satisfaction Score: 4.7/5`;
+Customer engagement looks positive.
 
-    /* Daily report */
+• Returning customers are increasing
+• New visitors are converting
+• Satisfaction trend is stable
+
+Recommendation:
+Launch loyalty rewards to improve repeat purchases.`;
+    }
+
+    if (
+      has(text, [
+        "category",
+        "categories"
+      ])
+    ) {
+      return `📂 Category Performance
+
+Strong categories currently include:
+
+• Electronics
+• Accessories
+• Smart Devices
+• Office Products
+
+Recommendation:
+Focus promotions on the top two performing categories.`;
+    }
+
+    if (
+      has(text, [
+        "analytics",
+        "report",
+        "summary"
+      ])
+    ) {
+      return `📊 Business Analytics
+
+Overall business health is good.
+
+• Revenue trend is positive
+• Sales conversion is stable
+• Inventory is under control
+• Customer activity is healthy
+
+Recommendation:
+Continue tracking low-stock items and promote best sellers.`;
+    }
+
     if (
       has(text, [
         "today",
-        "daily",
-        "summary"
+        "daily"
       ])
-    )
+    ) {
       return `📅 Today's Summary
 
-• Revenue: ₹12,450
-• Orders: 32
-• Customers: 26
-• Profit: ₹4,280`;
+Your business activity today looks steady.
 
-    /* Monthly */
+• Multiple customer transactions completed
+• Revenue collection is active
+• Product movement is normal
+
+Recommendation:
+Push quick offers during peak hours for more orders.`;
+    }
+
     if (
       has(text, [
         "month",
         "monthly"
       ])
-    )
-      return `🗓️ Monthly Report
+    ) {
+      return `🗓️ Monthly Overview
 
-• Revenue: ₹3,48,900
-• Orders: 821
-• Profit: ₹96,400`;
+This month performance is balanced.
 
-    /* Analytics */
-    if (
-      has(text, [
-        "analytics",
-        "report",
-        "performance",
-        "stats"
-      ])
-    )
-      return `📊 Analytics
+• Stable sales volume
+• Positive customer retention
+• Good revenue consistency
 
-• Growth Rate: +18%
-• Avg Order Value: ₹1,420
-• Best Category: Electronics
-• Repeat Buyers: 61%`;
+Recommendation:
+Analyze weekends vs weekdays to optimize campaigns.`;
+    }
 
-    /* Discount */
     if (
       has(text, [
         "discount",
-        "offer",
-        "sale offer"
+        "offer"
       ])
-    )
-      return `🎁 Promotions
+    ) {
+      return `🎁 Offer Suggestions
 
-• Running Offers: 3
-• Best Offer: Buy 2 Get 1
-• Highest Conversion: 14%`;
+Best offers for higher conversion:
 
-    /* Expense */
+• Buy 2 Get 1
+• Flat 10% on accessories
+• Combo electronics packs
+• Weekend flash deals
+
+Recommendation:
+Use limited-time offers to create urgency.`;
+    }
+
     if (
       has(text, [
-        "expense",
-        "cost",
-        "spending"
+        "help",
+        "what can you do"
       ])
-    )
-      return `💸 Expense Summary
+    ) {
+      return `🤖 I can help with:
 
-• Inventory Purchase: ₹1,20,000
-• Logistics: ₹22,000
-• Utilities: ₹8,400`;
+📦 Inventory Reports
+💰 Revenue Insights
+📈 Sales Analysis
+🏆 Best Products
+🚚 Supplier Updates
+👥 Customer Trends
+📊 Full Business Reports
 
-    /* Out of stock */
-    if (
-      has(text, [
-        "out of stock",
-        "unavailable"
-      ])
-    )
-      return `❌ Out of Stock
+Try asking:
+• Stock report
+• Revenue summary
+• Best products
+• Supplier status`;
+    }
 
-1. HDMI Cable
-2. Laptop Stand
-3. SSD 1TB`;
-
-    /* Thanks */
     if (
       has(text, [
         "thanks",
-        "thank you",
-        "ok"
+        "thank"
       ])
-    )
-      return "😊 You're welcome!";
+    ) {
+      return "😊 You're welcome! I'm always here whenever you need business insights or quick reports.";
+    }
 
-    return `🤖 I understood "${msg}"
+    return `🤖 I understand your request: "${msg}"
+
+I can help you with inventory, sales, revenue, suppliers, customer insights and reports.
 
 Try asking:
-• stock
-• revenue
-• sales
-• profit
-• reorder
-• suppliers
-• monthly report
-• analytics`;
+• Stock report
+• Revenue summary
+• Top products
+• Today's sales
+• Supplier status`;
   };
 
   const handleSend = () => {
@@ -367,62 +358,43 @@ Try asking:
       {
         role: "ai",
         content:
-          "👋 Welcome back to ChainAI.\nAsk me anything."
+          "👋 Welcome back to ChainAI Assistant.\nHow can I help you today?"
       }
     ]);
   };
 
-  const quick = [
-    {
-      text: "Stock",
-      icon: Package
-    },
-    {
-      text: "Revenue",
-      icon: DollarSign
-    },
-    {
-      text: "Sales",
-      icon: TrendingUp
-    },
-    {
-      text: "Reorder",
-      icon: AlertCircle
-    },
-    {
-      text: "Analytics",
-      icon: BarChart3
-    },
-    {
-      text: "Categories",
-      icon: Layers3
-    },
-    {
-      text: "Orders",
-      icon: ShoppingCart
-    }
+  const suggestions = [
+    { text: "Stock Report", icon: Package },
+    { text: "Revenue Summary", icon: DollarSign },
+    { text: "Today's Sales", icon: ShoppingCart },
+    { text: "Top Products", icon: TrendingUp },
+    { text: "Analytics", icon: BarChart3 },
+    { text: "Categories", icon: Layers3 },
+    { text: "Supplier Status", icon: Truck },
+    { text: "Customer Insights", icon: Users },
+    { text: "Monthly Report", icon: ClipboardList },
+    { text: "Offers", icon: BadgeIndianRupee },
+    { text: "Low Stock Items", icon: AlertCircle }
   ];
 
   return (
     <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end">
-
       {isOpen && (
-        <div className="w-[430px] h-[660px] bg-white rounded-[36px] shadow-2xl border border-slate-100 overflow-hidden mb-5 flex flex-col">
+        <div className="w-[400px] h-[600px] bg-white rounded-[34px] shadow-2xl border border-slate-100 overflow-hidden mb-5 flex flex-col">
 
           {/* Header */}
-          <div className="p-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 flex justify-between items-center">
-
+          <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 p-5 flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center">
+              <div className="w-11 h-11 rounded-2xl bg-white/20 flex items-center justify-center">
                 <Bot className="w-6 h-6 text-white" />
               </div>
 
               <div>
-                <h3 className="text-white font-bold text-lg">
-                  ChainAI
+                <h3 className="font-bold text-white">
+                  ChainAI Assistant
                 </h3>
                 <p className="text-white/70 text-xs">
-                  Business Assistant
+                  Smart Business Helper
                 </p>
               </div>
             </div>
@@ -430,7 +402,7 @@ Try asking:
             <div className="flex gap-2">
               <button
                 onClick={resetChat}
-                className="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center"
+                className="text-white"
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
@@ -439,7 +411,7 @@ Try asking:
                 onClick={() =>
                   setIsOpen(false)
                 }
-                className="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center"
+                className="text-white"
               >
                 <Minus className="w-4 h-4" />
               </button>
@@ -448,7 +420,7 @@ Try asking:
                 onClick={() =>
                   setIsOpen(false)
                 }
-                className="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center"
+                className="text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -488,9 +460,9 @@ Try asking:
             )}
           </div>
 
-          {/* Quick Buttons */}
+          {/* Suggestions */}
           <div className="px-4 py-3 flex flex-wrap gap-2 bg-white border-t">
-            {quick.map((item, i) => (
+            {suggestions.map((item, i) => (
               <button
                 key={i}
                 onClick={() =>
@@ -507,7 +479,6 @@ Try asking:
           {/* Input */}
           <div className="p-4 border-t bg-white">
             <div className="relative">
-
               <input
                 value={input}
                 type="text"
@@ -530,9 +501,9 @@ Try asking:
               >
                 <Send className="w-4 h-4" />
               </button>
-
             </div>
           </div>
+
         </div>
       )}
 
