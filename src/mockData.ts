@@ -797,4 +797,132 @@ export const SAMPLE_PRODUCTS: Partial<Product>[] = [
     unit: "units",
     image_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
   },
+
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                  HOME & LIVING                       ║
+  // ╚══════════════════════════════════════════════════════╝
+  {
+    name: "Non-Stick Cookware Set 5pc",
+    category: "Home & Living",
+    sku: "HOME-001",
+    selling_price: 3499,
+    cost_price: 1800,
+    current_stock: 40,
+    reorder_point: 10,
+    max_stock: 100,
+    supplier_name: "HomeEssentials Bangalore",
+    supplier_contact: "+91 9876543214",
+    lead_time_days: 7,
+    unit: "sets",
+    image_url: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&q=80"
+  },
+  {
+    name: "Memory Foam Pillow",
+    category: "Home & Living",
+    sku: "HOME-002",
+    selling_price: 1299,
+    cost_price: 650,
+    current_stock: 80,
+    reorder_point: 20,
+    max_stock: 200,
+    supplier_name: "HomeEssentials Bangalore",
+    supplier_contact: "+91 9876543214",
+    lead_time_days: 6,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=800&q=80"
+  },
+  {
+    name: "Stainless Steel Water Bottle 1L",
+    category: "Home & Living",
+    sku: "HOME-003",
+    selling_price: 799,
+    cost_price: 380,
+    current_stock: 150,
+    reorder_point: 30,
+    max_stock: 400,
+    supplier_name: "HomeEssentials Bangalore",
+    supplier_contact: "+91 9876543214",
+    lead_time_days: 5,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+  },
+  {
+    name: "Air Purifier HEPA",
+    category: "Home & Living",
+    sku: "HOME-004",
+    selling_price: 12999,
+    cost_price: 8500,
+    current_stock: 22,
+    reorder_point: 5,
+    max_stock: 60,
+    supplier_name: "HomeEssentials Bangalore",
+    supplier_contact: "+91 9876543214",
+    lead_time_days: 10,
+    unit: "units",
+    image_url: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80"
+  },
+  {
+    name: "Scented Soy Candle Set",
+    category: "Home & Living",
+    sku: "HOME-005",
+    selling_price: 899,
+    cost_price: 420,
+    current_stock: 110,
+    reorder_point: 25,
+    max_stock: 300,
+    supplier_name: "HomeEssentials Bangalore",
+    supplier_contact: "+91 9876543214",
+    lead_time_days: 5,
+    unit: "sets",
+    image_url: "https://images.unsplash.com/photo-1603905023518-6d2c9a7a6c0b?w=800&q=80"
+  },
+
+  // ╔══════════════════════════════════════════════════════╗
+  // ║                SPORTS & FITNESS                      ║
+  // ╚══════════════════════════════════════════════════════╝
+  {
+    name: "Yoga Mat 6mm",
+    category: "Sports & Fitness",
+    sku: "SPRT-001",
+    selling_price: 1199,
+    cost_price: 550,
+    current_stock: 90,
+    reorder_point: 20,
+    max_stock: 250,
+    supplier_name: "FitGear Pune",
+    supplier_contact: "+91 9876543215",
+    lead_time_days: 6,
+    unit: "pieces",
+    image_url: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80"
+  },
+  {
+    name: "Adjustable Dumbbell Set 20kg",
+    category: "Sports & Fitness",
+    sku: "SPRT-002",
+    selling_price: 5999,
+    cost_price: 3500,
+    current_stock: 35,
+    reorder_point: 8,
+    max_stock: 80,
+    supplier_name: "FitGear Pune",
+    supplier_contact: "+91 9876543215",
+    lead_time_days: 8,
+    unit: "sets",
+    image_url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80"
+  },
+  {
+    name: "Resistance Bands Set",
+    category: "Sports & Fitness",
+    sku: "SPRT-003",
+    selling_price: 699,
+    cost_price: 300,
+    current_stock: 130,
+    reorder_point: 25,
+    max_stock: 400,
+    supplier_name: "FitGear Pune",
+    supplier_contact: "+91 9876543215",
+    lead_time_days: 5,
+    unit: "sets",
+    image_url: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80"
+  },
 ];
