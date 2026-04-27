@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Truck, PackageCheck, ArrowRight, RefreshCw } from 'lucide-react';
 import { useRealTimeData } from '../hooks/useRealTimeData';
 import { db } from '../firebase';
@@ -6,18 +6,36 @@ import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 const QuickRestock = () => {
   const { products } = useRealTimeData();
+  const [maxStockInputs, setMaxStockInputs] = useState<{ [key: string]: number }>({});
+
+  const handleSetMaxStock = async (product: any) => {
+    const newMax = maxStockInputs[product.id];
+    if (!newMax || newMax <= 0) {
+      alert('Please enter a valid max stock value.');
+      return;
+    }
+    try {
+      const productRef = doc(db, 'products', product.id);
+      await updateDoc(productRef, {
+        max_stock: newMax,
+        updated_at: serverTimestamp()
+      });
+      alert(`✅ Max stock for "${product.name}" set to ${newMax}!`);
+    } catch (err) {
+      console.error(err);
+      alert('❌ Failed to update max stock.');
+    }
+  };
 
   const handleRestock = async (product: any) => {
     if (!product.max_stock || product.max_stock <= 0) {
-      alert(`Cannot restock "${product.name}": Max stock is not set. Please update the product's max stock value first.`);
+      alert(`Cannot restock "${product.name}": Max stock is not set.`);
       return;
     }
-
     if (product.current_stock >= product.max_stock) {
       alert(`"${product.name}" is already at full capacity (${product.max_stock} units).`);
       return;
     }
-
     try {
       const productRef = doc(db, 'products', product.id);
       await updateDoc(productRef, {
@@ -72,19 +90,36 @@ const QuickRestock = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => handleRestock(product)}
-                disabled={!product.max_stock || product.max_stock <= 0}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-[50px] font-black text-sm shadow-lg shadow-indigo-100 transition-all flex items-center justify-center gap-3 group-hover:scale-105 active:scale-95"
-              >
-                <PackageCheck className="w-5 h-5" />
-                {!product.max_stock || product.max_stock <= 0 ? 'Max Stock Not Set' : 'Confirm Full Restock'}
-              </button>
-
-              {(!product.max_stock || product.max_stock <= 0) && (
-                <p className="text-xs text-rose-400 font-semibold text-center mt-3">
-                  ⚠️ Set max_stock in Firestore to enable restock
-                </p>
+              {(!product.max_stock || product.max_stock <= 0) ? (
+                <div className="space-y-3">
+                  <p className="text-xs text-rose-400 font-semibold text-center">
+                    ⚠️ Max stock not set. Enter a value to enable restock.
+                  </p>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      min={1}
+                      placeholder="Enter max stock"
+                      value={maxStockInputs[product.id] || ''}
+                      onChange={e => setMaxStockInputs(prev => ({ ...prev, [product.id]: Number(e.target.value) }))}
+                      className="flex-1 px-4 py-2 border border-slate-200 rounded-2xl text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                    />
+                    <button
+                      onClick={() => handleSetMaxStock(product)}
+                      className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-black text-sm transition-all"
+                    >
+                      Set
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => handleRestock(product)}
+                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[50px] font-black text-sm shadow-lg shadow-indigo-100 transition-all flex items-center justify-center gap-3 group-hover:scale-105 active:scale-95"
+                >
+                  <PackageCheck className="w-5 h-5" />
+                  Confirm Full Restock
+                </button>
               )}
             </div>
           ))
